@@ -1,0 +1,66 @@
+´<!--
+  Desenvolvido por: Lucas Silva
+  Linkedin: https://www.linkedin.com/in/lucas-silva-a9582b188/
+  GitHub: https://github.com/lucasDSBR
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<style type="text/css">
+  li {
+    border-bottom: 1px solid #C0C0C0;
+  }
+  #colMenu{
+    margin-right: 25px;
+  }
+  tbody tr:hover{
+    background-color: #D3D3D3;
+  }
+  thead {
+    background-color: #212529;
+    color: #FFF; 
+  }
+  .table {
+    box-shadow: 10px 10px 20px;
+  }
+
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="col" id="colMenu">
+    <!--MENU-->
+    <app-menu></app-menu>
+  </div>
+  <div class="col-9">
+    <p>{{tarefas.length}} {{tarefas.length == 1 ? 'Tarefa' : 'Tarefas'}} de 20:<br> <progress value="{{tarefas.length}}" max="20"class="align-middle"></progress></p>
+    <table class="table">   
+      <thead>
+        <tr>
+          <th scope="col" class="align-middle">Situação</th>
+          <th scope="col" class="align-middle">Titulo</th>
+          <th scope="col" class="align-middle">Texto</th>
+          <th scope="col" class="align-middle">Importância</th>
+          <th scope="col" class="align-middle">Data</th>
+          <th scope="col" class="align-middle">Opções</th>
+        </tr>
+      </thead>
+      <tbody style="border-radius: 20px;">
+        <tr *ngFor="let tarefa of filtrarTarefas, let i=index">
+          <td class="align-middle"><input class="form-check-input" type="checkbox" value="1" id="Check" (click)="tarefasOk()"> - {{tarefa.situacao == false ? 'Pendente' : 'Concluída'}}</td>
+          <td class="align-middle">{{tarefa.titulo}}</td>
+          <td class="align-middle"><a [routerLink]="['', 'tarefa', tarefa.id, 'ver']" class="btn btn-success btn-sm mr-2 m-2">Ver texto</a></td>
+          <td class="align-middle">{{tarefa.importancia}}</td>
+          <td class="align-middle">{{tarefa.data}}</td>
+          <td class="align-middle">
+            <a [routerLink]="['', 'tarefa', tarefa.id, 'editar']" class="btn btn-primary btn-sm mr-2 m-2">Editar</a>
+            <a [routerLink]="['', 'tarefa', tarefa.id, 'deletar']" class="btn btn-danger btn-sm mr-2 m-2">Deletar</a>     
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

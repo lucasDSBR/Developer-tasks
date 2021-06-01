@@ -1,0 +1,47 @@
+´<!--
+  Desenvolvido por: Lucas Silva
+  Linkedin: https://www.linkedin.com/in/lucas-silva-a9582b188/
+  GitHub: https://github.com/lucasDSBR
+-->
+<style type="text/css">
+  #colMenu{
+    margin-right: 25px;
+  }
+</style>
+<div class="row">
+  <div class="col" id="colMenu">
+    <!--MENU-->
+    <app-menu></app-menu>
+  </div>
+  <div class="col-9">
+    <form #frm="ngForm" (ngSubmit)="submitForm(frm)">
+      <h1 class="mb-2 col d-flex justify-content-center">Nova tarefa</h1>
+      
+      <input type="text" class="form-control" name="id" [ngModel]="tarefa.id" hidden>
+      <div class="form-group">
+        <label for="txtNome">Titulo</label>
+        <input type="text" class="form-control" #titulo="ngModel" name="titulo" [ngModel]="tarefa.titulo" minlength="3" required>
+        
+      </div>
+      <div class="form-group">
+          <label for="txtEmail">Tarefa:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #texto="ngModel" name="texto" [ngModel]="tarefa.texto" required> </textarea>
+         
+        </div>
+      <div class="form-group">
+        <label for="txtTelefone">Importância</label>
+        <select class="form-control" #importancia="ngModel" name="importancia" [ngModel]="tarefa.importancia" required>
+          <option>Alta</option>
+          <option>Média</option>
+          <option>Baixa</option>
+        </select>
+       
+      </div>
+       <div class="form-group">
+        <label for="txtTelefone">Data</label>
+        <input type="date" class="form-control" #data="ngModel" name="data" [ngModel]="tarefa.data" required>
+      </div>
+      <button type="submit" [disabled]="!frm.valid" class="btn btn-success m-1" id="liveToastBtn">Gravar</button>
+    </form>
+  </div> 
+</div>
